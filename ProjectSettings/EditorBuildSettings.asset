@@ -11,9 +11,15 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/2.unity
     guid: 16ed9ddbefa42f648adb62c6cc80401a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Coloring.unity
     guid: 87337777ce149c44d8ded452ba23c5ab
+  - enabled: 0
+    path: Assets/Scenes/Pipeline.unity
+    guid: ab615c7599f57fe4e80b8ed9ab40a39c
+  - enabled: 1
+    path: Assets/Scenes/PhotoRobot.unity
+    guid: 41910b3324f03874fa49f3c616d8dda2
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: e3200000e3b76e5449a648dc4d4716e6, type: 2}
     com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000, guid: 2b25473b312d6b844ad723a3bda265bb, type: 2}
