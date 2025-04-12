@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -218,18 +218,22 @@ public class CreateRandomPhoto : MonoBehaviour
 
     public void CheckingPhoto()
     {
+        int i = 0;
         if (_hairGenereted == HairImage.sprite.name.ToString())
         {
             HairImage.color = Color.green;
+            i++;
         }
         else
         {
             HairImage.color = Color.red;
+
         }
 
         if (_beardGenereted == BeardImage.sprite.name.ToString())
         {
             BeardImage.color = Color.green;
+            i++;
         }
         else
         {
@@ -239,6 +243,7 @@ public class CreateRandomPhoto : MonoBehaviour
         if (_noseGenereted == NoseImage.sprite.name.ToString())
         {
             NoseImage.color = Color.green;
+            i++;
         }
         else
         {
@@ -248,6 +253,7 @@ public class CreateRandomPhoto : MonoBehaviour
         if (_lipsGenereted == LipsImage.sprite.name.ToString())
         {
             LipsImage.color = Color.green;
+            i++;
         }
         else
         {
@@ -258,6 +264,7 @@ public class CreateRandomPhoto : MonoBehaviour
         {
             EyesLeftImage.color = Color.green;
             EyesRightImage.color = Color.green;
+            i++;
         }
         else
         {
@@ -268,6 +275,7 @@ public class CreateRandomPhoto : MonoBehaviour
         if (_glassesGenereted == GlassesImage.sprite.name.ToString())
         {
             GlassesImage.color = Color.green;
+            i++;
         }
         else
         {
@@ -275,26 +283,36 @@ public class CreateRandomPhoto : MonoBehaviour
         }
 
         if (_faceGenereted == FaceImage.sprite.name.ToString())
-        { FaceImage.color = Color.green; }
+        {
+            FaceImage.color = Color.green;
+            i++;
+        }
         else { FaceImage.color = Color.red; }
 
+        if (i == 7)
+        {
+            FinishText.text = "¿… Ã¿À¿ƒ÷¿";
+        }
 
-
+        else
+        {
+            FinishText.text = "ÀŒ’";
+        }
     }
-
+    public TextMeshProUGUI FinishText;
     int countFace = 0;
     public GameObject CheckButton;
     public void ActiveCheckButton()
     {
         countFace++;
-        if(FaceImage.color == activeColor && 
+        if (FaceImage.color == activeColor &&
             HairImage.color == activeColor &&
             NoseImage.color == activeColor &&
             LipsImage.color == activeColor &&
             EyesRightImage.color == activeColor &&
             BeardImage.color == activeColor &&
             GlassesImage.color == activeColor
-            ) 
+            )
         {
             CheckButton.SetActive(true);
         }

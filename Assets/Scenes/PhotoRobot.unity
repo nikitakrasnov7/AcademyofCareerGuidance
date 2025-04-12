@@ -1019,6 +1019,7 @@ MonoBehaviour:
   HairImage: {fileID: 509082903}
   GlassesImage: {fileID: 367058237}
   _hairGenereted: 
+  FinishText: {fileID: 0}
   CheckButton: {fileID: 1585323075}
 --- !u!4 &801445614
 Transform:
@@ -1049,7 +1050,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartTime: 30
   CurrentTime: 30
-  TimerText: {fileID: 1290744810}
+  TimerText: {fileID: 1285701353}
   isStartTimer: 0
   ActiveInventary:
     m_PersistentCalls:
