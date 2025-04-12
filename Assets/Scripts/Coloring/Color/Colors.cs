@@ -6,6 +6,10 @@ using UnityEngine.EventSystems;
 public class Colors : MonoBehaviour, IPointerClickHandler
 {
     public Color color;
+    private void Start()
+    {
+        ActiveColor.activeColor = Color.white;
+    }
 
     public void OnPointerClick(PointerEventData eventData)
     {
