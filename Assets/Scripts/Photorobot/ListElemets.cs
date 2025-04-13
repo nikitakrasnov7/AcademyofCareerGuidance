@@ -17,7 +17,7 @@ public class ListElemets : MonoBehaviour, IPointerClickHandler
         CreateRandomPhoto.ActiveTypeElement = TypeElement;
         CreateRandomPhoto.NewSpriteForInventary = Sprites;
         ActiveInventery.Invoke();
-        CreateRandomPhoto.UpdateInventary();
+        //CreateRandomPhoto.UpdateInventary();
 
     }
 }

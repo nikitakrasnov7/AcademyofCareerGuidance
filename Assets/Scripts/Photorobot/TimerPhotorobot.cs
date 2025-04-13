@@ -8,14 +8,13 @@ using UnityEngine.Events;
 
 public class TimerPhotorobot : MonoBehaviour
 {
-    public float StartTime = 30f;
-    public float CurrentTime = 30f;
+    public float StartTime = 5f;
+    public float CurrentTime = 5f;
     public TextMeshProUGUI TimerText;
 
     public bool isStartTimer = false;
 
     public UnityEvent ActiveInventary;
-    //public UnityEvent ResetFace;
     public void Timer()
     {
 
@@ -34,7 +33,6 @@ public class TimerPhotorobot : MonoBehaviour
             else
             {
                 ActiveInventary.Invoke();
-                //ResetFace.Invoke();
                 isStartTimer = false;
             }
         }

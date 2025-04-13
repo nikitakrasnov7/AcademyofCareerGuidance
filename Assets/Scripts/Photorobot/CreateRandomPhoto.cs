@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -51,7 +52,7 @@ public class CreateRandomPhoto : MonoBehaviour
 
 
     private string _faceGenereted;
-    [SerializeField] private string _hairGenereted;
+    private string _hairGenereted;
     private string _beardGenereted;
     private string _lipsGenereted;
     private string _eyesGenereted;
@@ -134,18 +135,69 @@ public class CreateRandomPhoto : MonoBehaviour
 
     }
 
-    public static void UpdateInventary()
+    public void UpdateInventary()
     {
-        if (ImagesInventary.Count > 0 && NewSpriteForInventary.Count > 0)
+        ActiveInventary();
+        switch (DropdownList.value)
         {
-            for (int i = 0; i < NewSpriteForInventary.Count; i++)
-            {
-                ImagesInventary[i].sprite = NewSpriteForInventary[i];
-            }
+            case 0:
+                UpdateInventarySlot(SpritesForFaceInventary);
+                ActiveTypeElement = TypeElementPhotorobot.Face;
+                break;
+
+            case 1:
+                UpdateInventarySlot(SpritesForHairInventary);
+                ActiveTypeElement = TypeElementPhotorobot.Hair;
+                break;
+
+            case 2:
+                UpdateInventarySlot(SpritesForNoseInventary);
+                ActiveTypeElement = TypeElementPhotorobot.Nose;
+                break;
+
+            case 3:
+                UpdateInventarySlot(SpritesForBoardInventary);
+                ActiveTypeElement = TypeElementPhotorobot.Board;
+                break;
+
+            case 4:
+                UpdateInventarySlot(SpritesForEyesInventary);
+                ActiveTypeElement = TypeElementPhotorobot.Eyes;
+                break;
+
+            case 5:
+                UpdateInventarySlot(SpritesForLipsInventary);
+                ActiveTypeElement = TypeElementPhotorobot.Lips;
+                break;
+
+            case 6:
+                UpdateInventarySlot(SpritesForGlassesInventary);
+                ActiveTypeElement = TypeElementPhotorobot.Glasses;
+                break;
+
         }
+
     }
 
+    public List<Sprite> SpritesForFaceInventary = new List<Sprite>();
+    public List<Sprite> SpritesForHairInventary = new List<Sprite>();
+    public List<Sprite> SpritesForNoseInventary = new List<Sprite>();
+    public List<Sprite> SpritesForLipsInventary = new List<Sprite>();
+    public List<Sprite> SpritesForEyesInventary = new List<Sprite>();
+    public List<Sprite> SpritesForBoardInventary = new List<Sprite>();
+    public List<Sprite> SpritesForGlassesInventary = new List<Sprite>();
 
+    private void UpdateInventarySlot(List<Sprite> sprites)
+    {
+        for (int i = 0; i < ImagesInventaryInspector.Count; i++)
+        {
+            ImagesInventaryInspector[i].sprite = sprites[i];
+            ImagesInventaryInspector[i].color = Color.white;
+        }
+
+    }
+
+    public TMP_Dropdown DropdownList;
     public void ActiveInventary()
     {
         Inventary.SetActive(true);
@@ -216,80 +268,21 @@ public class CreateRandomPhoto : MonoBehaviour
 
     }
 
+    [SerializeField]int i = 0;
     public void CheckingPhoto()
     {
-        int i = 0;
-        if (_hairGenereted == HairImage.sprite.name.ToString())
-        {
-            HairImage.color = Color.green;
-            i++;
-        }
-        else
-        {
-            HairImage.color = Color.red;
+        i = 0;
+        CheckOutline(_faceGenereted, FaceImage);
+        CheckOutline(_beardGenereted, BeardImage);
+        CheckOutline(_eyesGenereted, EyesLeftImage);
+        CheckOutline(_eyesGenereted, EyesRightImage);
+        CheckOutline(_hairGenereted, HairImage);
+        CheckOutline(_lipsGenereted, LipsImage);
+        CheckOutline(_glassesGenereted, GlassesImage);
+        CheckOutline(_noseGenereted, NoseImage);
 
-        }
 
-        if (_beardGenereted == BeardImage.sprite.name.ToString())
-        {
-            BeardImage.color = Color.green;
-            i++;
-        }
-        else
-        {
-            BeardImage.color = Color.red;
-        }
-
-        if (_noseGenereted == NoseImage.sprite.name.ToString())
-        {
-            NoseImage.color = Color.green;
-            i++;
-        }
-        else
-        {
-            NoseImage.color = Color.red;
-        }
-
-        if (_lipsGenereted == LipsImage.sprite.name.ToString())
-        {
-            LipsImage.color = Color.green;
-            i++;
-        }
-        else
-        {
-            LipsImage.color = Color.red;
-        }
-
-        if (_eyesGenereted == EyesRightImage.sprite.name.ToString())
-        {
-            EyesLeftImage.color = Color.green;
-            EyesRightImage.color = Color.green;
-            i++;
-        }
-        else
-        {
-            EyesLeftImage.color = Color.red;
-            EyesRightImage.color = Color.red;
-        }
-
-        if (_glassesGenereted == GlassesImage.sprite.name.ToString())
-        {
-            GlassesImage.color = Color.green;
-            i++;
-        }
-        else
-        {
-            GlassesImage.color = Color.red;
-        }
-
-        if (_faceGenereted == FaceImage.sprite.name.ToString())
-        {
-            FaceImage.color = Color.green;
-            i++;
-        }
-        else { FaceImage.color = Color.red; }
-
-        if (i == 7)
+        if (i == 8)
         {
             FinishText.text = "ÀÉ ÌÀËÀÄÖÀ";
         }
@@ -299,6 +292,38 @@ public class CreateRandomPhoto : MonoBehaviour
             FinishText.text = "ËÎÕ";
         }
     }
+
+    public void CheckOutline(string generatedSprite, Image image)
+    {
+        if (image.GetComponent<Outline>() != null)
+        {
+            image.GetComponent<Outline>().enabled = true;
+            image.GetComponent<Outline>().effectDistance = new Vector2(4f, 4f);
+            if (generatedSprite == image.sprite.name.ToString())
+            {
+                i++;
+                image.GetComponent<Outline>().effectColor = Color.green;
+            }
+
+            else
+            {
+                image.GetComponent<Outline>().effectColor = Color.red;
+            }
+        }
+    }
+
+    public void ResetOutline()
+    {
+        FaceImage.GetComponent<Outline>().enabled = false;
+        HairImage.GetComponent<Outline>().enabled = false;
+        EyesLeftImage.GetComponent<Outline>().enabled = false;
+        EyesRightImage.GetComponent<Outline>().enabled = false;
+        NoseImage.GetComponent<Outline>().enabled = false;
+        LipsImage.GetComponent<Outline>().enabled = false;
+        GlassesImage.GetComponent<Outline>().enabled = false;
+        BeardImage.GetComponent<Outline>().enabled = false;
+    }
+
     public TextMeshProUGUI FinishText;
     int countFace = 0;
     public GameObject CheckButton;

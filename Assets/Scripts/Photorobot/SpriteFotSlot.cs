@@ -12,5 +12,7 @@ public class SpriteFotSlot : MonoBehaviour, IPointerClickHandler
     {
         createPhoto.CollectingPhotorobot(GetComponent<Image>().sprite);
         createPhoto.ActiveCheckButton();
+        createPhoto.ResetOutline();
+        Debug.Log(GetComponent<Image>().sprite.name);
     }
 }
