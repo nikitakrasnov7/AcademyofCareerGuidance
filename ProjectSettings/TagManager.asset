@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Image
   - Pipe
+  - CL
+  - Canvas
   layers:
   - Default
   - TransparentFX
