@@ -106,6 +106,10 @@ public class ControllerBN : MonoBehaviour
     public void ReloadScene() 
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 
+    public void BackToMenu()
+    {
+        BackToMainMenu.Instance.BackToMenu(SceneManager.GetActiveScene().name);
     }
 }

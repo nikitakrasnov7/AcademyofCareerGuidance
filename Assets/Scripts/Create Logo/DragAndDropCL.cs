@@ -47,6 +47,8 @@ public class DragAndDropCL : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
                     yy = touch.position.y;
                 }
 
+                transform.position = new Vector3(xx, yy); 
+
             }
         }
     }
