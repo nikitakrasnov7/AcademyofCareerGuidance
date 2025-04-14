@@ -8,6 +8,8 @@ TagManager:
   - Pipe
   - CL
   - Canvas
+  - Logo
+  - Brand
   layers:
   - Default
   - TransparentFX

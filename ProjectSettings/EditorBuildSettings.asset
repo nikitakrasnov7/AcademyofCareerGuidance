@@ -23,9 +23,15 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Create Logo.unity
     guid: 0ff915b79185bbc479b924d922b8fe7a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Password.unity
     guid: c2f216a5bd3da78428a19057eb9e56c6
+  - enabled: 0
+    path: Assets/Scenes/Logo and brend.unity
+    guid: d6ce50089f681b345b59630e2f7f6153
+  - enabled: 1
+    path: Assets/Scenes/Brand Name.unity
+    guid: 7082e276fa5cf1b438ef9db108fe5c26
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: e3200000e3b76e5449a648dc4d4716e6, type: 2}
     com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000, guid: 2b25473b312d6b844ad723a3bda265bb, type: 2}
