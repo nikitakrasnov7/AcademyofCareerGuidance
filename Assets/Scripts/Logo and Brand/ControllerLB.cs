@@ -86,9 +86,14 @@ public class ControllerLB : MonoBehaviour
 
     private void Update()
     {
-        if(SelectLogo != null && SelectButton != null)
+        CheckResoult();
+    }
+
+    public void CheckResoult()
+    {
+        if (SelectLogo != null && SelectButton != null)
         {
-            if(isCor)
+            if (isCor)
             {
                 isCor = false;
                 StartCoroutine(CheckSelectLogoAndBrand());
@@ -97,7 +102,7 @@ public class ControllerLB : MonoBehaviour
     }
     private IEnumerator CheckSelectLogoAndBrand()
     {
-        if(SelectLogo.GetComponent<InformationLogo>().BrandLogo == SelectButton.GetComponent<InformationButtonLB>().BrandButton) 
+        if (SelectLogo.GetComponent<InformationLogo>().BrandLogo == SelectButton.GetComponent<InformationButtonLB>().BrandButton)
         {
             SelectButton.GetComponentInParent<Outline>().effectColor = Color.green;
             SelectLogo.GetComponent<Outline>().effectColor = Color.green;
@@ -126,7 +131,7 @@ public class ControllerLB : MonoBehaviour
 
         isCor = true;
 
-        if(correctCount == 5)
+        if (correctCount == 5)
         {
             FinishText.gameObject.SetActive(true);
             FinishText.text = "Молодец";

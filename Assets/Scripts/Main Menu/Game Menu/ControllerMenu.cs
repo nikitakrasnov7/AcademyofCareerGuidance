@@ -16,6 +16,9 @@ public class ControllerMenu : MonoBehaviour
     public TextMeshProUGUI Label;
     public TextMeshProUGUI Discription;
 
+    int countScreen;
+
+    
 
     public void OpenWindowForProfession(InformationAboutThePriffesion so)
     {
@@ -49,7 +52,12 @@ public class ControllerMenu : MonoBehaviour
         }
     }
 
-
+    //public void TestScreenshot()
+    //{
+    //    countScreen++;
+    //     ScreenCapture.CaptureScreenshot($"Assets/Images/Screenshots/screenTest{countScreen}.png");
+    //    Debug.Log($"Assets/Images/Screenshots/screenTest{countScreen}.png");
+    //}
 
 
     

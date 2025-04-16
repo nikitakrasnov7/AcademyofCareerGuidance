@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -289,7 +290,8 @@ public class CreateRandomPhoto : MonoBehaviour
         else
         {
             FinishText.text = "кну";
-        }
+        } 
+           
     }
 
     public void CheckOutline(string generatedSprite, Image image)

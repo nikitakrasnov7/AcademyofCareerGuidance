@@ -60,7 +60,7 @@ public class ControllerBN : MonoBehaviour
             {
                 Progress.text = Progress.text + "\nЛох";
                 ReloadButton.SetActive(true);
-               isTimer = false;
+                isTimer = false;
             }
 
         }
@@ -77,6 +77,7 @@ public class ControllerBN : MonoBehaviour
     {
         if (timer >= 0)
         {
+            CheckRegistre(InputPlayerBrand);
             inputText = InputPlayerBrand.text.ToLower();
             inputText = inputText.Replace(" ", "");
 
@@ -93,6 +94,36 @@ public class ControllerBN : MonoBehaviour
 
     }
 
+    public void CheckRegistre(TMP_InputField input)
+    {
+        string text;
+        if (input.text != null)
+        {
+
+            text = input.text;
+        }
+        else
+        {
+            text = "Ничего";
+        }
+
+        if (text == input.text.ToLower())
+        {
+            Debug.Log("введенный текст весь нижнего регистра");
+        }
+        else if (text == input.text.ToUpper())
+        {
+            Debug.Log("введенный текст весь ВЕРНХНЕГО регистра");
+
+        }
+        else
+        {
+            Debug.Log("введенный текст весь разного регистра");
+
+        }
+
+    }
+
     public void GameOver()
     {
         if (playerResoult == 5)
@@ -103,7 +134,7 @@ public class ControllerBN : MonoBehaviour
         }
     }
 
-    public void ReloadScene() 
+    public void ReloadScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
