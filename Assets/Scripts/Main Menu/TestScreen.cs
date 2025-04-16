@@ -1,57 +1,60 @@
 
 
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class TestScreen : MonoBehaviour
 {
-    public Camera renderCamera;      // Камера для рендеринга в RenderTexture
-    public RawImage rawImage;        // RawImage для отображения скриншота
-    public RenderTexture renderTexture;  // RenderTexture
-    public bool useMainCameraCullingMask = false; // Дополнительный параметр
+    public int FileCounter = 0;
 
-    public Image image;
-
-    void Start()
+    private void LateUpdate()
     {
-        //Отключение камеры в начале
-       // renderCamera.enabled = false;
-    }
-
-    public void TakeScreenshot()
-    {
-        //Включение камеры для захвата
-        renderCamera.enabled = true;
-
-        // Если нужно использовать culling mask от основной камеры:
-        if (useMainCameraCullingMask)
+        if (Input.touchCount ==1)
         {
-            renderCamera.cullingMask = Camera.main.cullingMask;
+            takeHiResShot = true;
+
+            CamCapture();
         }
-
-        // Рендеринг в RenderTexture
-        renderCamera.Render();
-
-        // Создание текстуры из RenderTexture
-        Texture2D texture2D = new Texture2D(renderTexture.width, renderTexture.height, TextureFormat.RGB24, false);
-        RenderTexture.active = renderTexture;
-        texture2D.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
-        texture2D.Apply();
-        RenderTexture.active = null;
-
-        // Создание спрайта из текстуры
-        Sprite sprite = Sprite.Create(texture2D, new Rect(0, 0, texture2D.width, texture2D.height), Vector2.zero);
-
-        // Установка спрайта на RawImage
-        image.sprite = sprite;
-
-        //Выключение камеры
-        renderCamera.enabled = false;
-
     }
-    public void Deb()
-    {
-        Debug.Log("Скриншот сделан и отображен!");
 
+    private bool takeHiResShot = false;
+
+
+    void CamCapture()
+    {
+        if (takeHiResShot)
+        {
+            Camera Cam = GetComponent<Camera>();
+
+            RenderTexture rt = new RenderTexture(250, 250, 24);
+            Camera.main.targetTexture = rt;
+
+
+            Texture2D Image = new Texture2D(Cam.targetTexture.width, Cam.targetTexture.height);
+            RenderTexture.active = rt;
+            Cam.Render();
+
+
+            Image.ReadPixels(new Rect(0, 0, Cam.targetTexture.width, Cam.targetTexture.height), 0, 0);
+            Image.Apply();
+
+            Camera.main.targetTexture = null;
+            RenderTexture.active = null;
+            Destroy(rt);
+
+            var Bytes = Image.EncodeToPNG();
+            Destroy(Image);
+
+            Debug.Log(Bytes);
+
+            string base64String = System.Convert.ToBase64String(Bytes);
+            PlayerPrefs.SetString("\\Image_" + FileCounter, base64String);
+
+            File.WriteAllBytes(Application.persistentDataPath + "\\Image_" + ".png", Bytes);
+            FileCounter++;
+            takeHiResShot = false;
+
+        }
     }
 }
