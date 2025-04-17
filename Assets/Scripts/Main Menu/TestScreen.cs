@@ -6,11 +6,11 @@ using UnityEngine.UI;
 
 public class TestScreen : MonoBehaviour
 {
-    public int FileCounter = 0;
+    public static int FileCounter = 0;
 
     private void LateUpdate()
     {
-        if (Input.touchCount ==1)
+        if (Input.GetKeyDown(KeyCode.R))
         {
             takeHiResShot = true;
 
@@ -21,40 +21,40 @@ public class TestScreen : MonoBehaviour
     private bool takeHiResShot = false;
 
 
-    void CamCapture()
+    public void CamCapture()
     {
-        if (takeHiResShot)
-        {
-            Camera Cam = GetComponent<Camera>();
 
-            RenderTexture rt = new RenderTexture(250, 250, 24);
-            Camera.main.targetTexture = rt;
+        Camera Cam = GetComponent<Camera>();
 
-
-            Texture2D Image = new Texture2D(Cam.targetTexture.width, Cam.targetTexture.height);
-            RenderTexture.active = rt;
-            Cam.Render();
+        RenderTexture rt = new RenderTexture(250, 250, 24);
+        Camera.main.targetTexture = rt;
 
 
-            Image.ReadPixels(new Rect(0, 0, Cam.targetTexture.width, Cam.targetTexture.height), 0, 0);
-            Image.Apply();
+        Texture2D Image = new Texture2D(Cam.targetTexture.width, Cam.targetTexture.height);
+        RenderTexture.active = rt;
+        Cam.Render();
 
-            Camera.main.targetTexture = null;
-            RenderTexture.active = null;
-            Destroy(rt);
 
-            var Bytes = Image.EncodeToPNG();
-            Destroy(Image);
+        Image.ReadPixels(new Rect(0, 0, Cam.targetTexture.width, Cam.targetTexture.height), 0, 0);
+        Image.Apply();
 
-            Debug.Log(Bytes);
+        Camera.main.targetTexture = null;
+        RenderTexture.active = null;
+        Destroy(rt);
 
-            string base64String = System.Convert.ToBase64String(Bytes);
-            PlayerPrefs.SetString("\\Image_" + FileCounter, base64String);
+        var Bytes = Image.EncodeToPNG();
+        Destroy(Image);
 
-            File.WriteAllBytes(Application.persistentDataPath + "\\Image_" + ".png", Bytes);
-            FileCounter++;
-            takeHiResShot = false;
+        Debug.Log(Bytes);
 
-        }
+        string base64String = System.Convert.ToBase64String(Bytes);
+        PlayerPrefs.SetString("\\Image_" + FileCounter, base64String);
+
+      File.WriteAllBytes(Application.persistentDataPath + "\\Image_" + ".png", Bytes);
+        FileCounter++;
+        takeHiResShot = false;
+
+        Debug.Log(FileCounter);
     }
+
 }

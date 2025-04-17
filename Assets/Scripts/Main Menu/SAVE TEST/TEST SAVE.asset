@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 035cdc6a9769c4f4cbea6dfeb826e8b6, type: 3}
+  m_Name: TEST SAVE
+  m_EditorClassIdentifier: 
+  ListSpriteSaveToFace:
+  - {fileID: 21300000, guid: 36d4123a2751d514699eeca65980ff20, type: 3}
+  - {fileID: 21300000, guid: 0539106f13abd694aa188928e8e4e757, type: 3}
+  - {fileID: 21300000, guid: 6c5e3f4e90e864c42a86c9aec9ec027b, type: 3}
+  - {fileID: 21300000, guid: edac308f5e32ca94c91c0ff9a3159f45, type: 3}
+  - {fileID: 21300000, guid: 87583763476fdc640a30f12c5562c7aa, type: 3}
+  - {fileID: 21300000, guid: f293087efb71de1408dea0a476c40714, type: 3}
+  - {fileID: 21300000, guid: f293087efb71de1408dea0a476c40714, type: 3}
+  - {fileID: 21300000, guid: 0a9a4adacc9cd0f448e1ef65b5a0ff72, type: 3}

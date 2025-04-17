@@ -30,7 +30,12 @@ public class DragAndDropPipe : MonoBehaviour, IPointerDownHandler, IPointerUpHan
                 Touch touch = Input.GetTouch(0);
                 if (touch.phase == TouchPhase.Moved || touch.phase == TouchPhase.Stationary)
                 {
-                    transform.position = touch.position;
+                    //transform.position = touch.position;
+
+                    Vector2 screenPos = touch.position; // Изменено на Vector2
+                    Vector2 worldPos = Camera.main.ScreenToWorldPoint(screenPos);
+                    transform.position = worldPos;
+
                 }
             }
         }

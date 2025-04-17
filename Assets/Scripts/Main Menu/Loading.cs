@@ -20,7 +20,7 @@ public class Loading : MonoBehaviour
         while (LoadBar.value <= 1)
         {
             LoadBar.value += f;
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.05f);
             if(LoadBar.value >= 1) 
             {
                 break;
@@ -31,7 +31,9 @@ public class Loading : MonoBehaviour
         {
             Debug.Log("aaa");
 
-            SceneManager.LoadScene("2");
+            SceneManager.LoadScene("Menu button");
+
+            SceneManager.LoadScene("2", LoadSceneMode.Additive);
             SceneManager.UnloadSceneAsync("1");
 
         }

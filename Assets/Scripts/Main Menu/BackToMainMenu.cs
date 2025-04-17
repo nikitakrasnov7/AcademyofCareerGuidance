@@ -19,7 +19,10 @@ public class BackToMainMenu : MonoBehaviour
 
     public void BackToMenu(string nameActiveScene)
     {
-        SceneManager.LoadScene("2");
+        SceneManager.LoadScene("Menu button");
+
+        SceneManager.LoadScene("2", LoadSceneMode.Additive);
+
         SceneManager.UnloadSceneAsync(nameActiveScene);
     }
 }

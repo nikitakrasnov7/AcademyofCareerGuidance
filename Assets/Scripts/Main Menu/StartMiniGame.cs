@@ -13,6 +13,8 @@ public class StartMiniGame : MonoBehaviour, IPointerClickHandler
         if(NameMiniGameScene != null)
         {
             SceneManager.LoadScene(NameMiniGameScene);
+            SceneManager.LoadScene("Menu button", LoadSceneMode.Additive);
+
             SceneManager.UnloadSceneAsync("2");
         }
     }
